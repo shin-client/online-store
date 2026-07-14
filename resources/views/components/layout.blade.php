@@ -11,6 +11,7 @@
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex flex-col min-h-screen antialiased">
@@ -20,19 +21,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Brand / Logo -->
             <div class="flex items-center gap-8">
-                <a href="{{ url('/') }}" class="font-semibold text-lg tracking-tight text-[#f53003]">
+                <a href="{{ url('/') }}" wire:navigate class="font-semibold text-lg tracking-tight text-[#f53003]">
                     {{ config('app.name', 'Online Store') }}
                 </a>
 
                 <!-- Navigation Links -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#706f6c] dark:text-[#A1A09A]">
-                    <a href="{{ url('/') }}"
+                    <a href="{{ url('/') }}" wire:navigate
                         class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Home</a>
-                    <a href="#"
+                    <a href="{{ route('products') }}" wire:navigate
                         class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
-                    <a href="#" class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
-                    <a href="#"
-                        class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Contact</a>
+                    <a href="{{ route('about') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
                 </nav>
             </div>
 
@@ -40,6 +39,7 @@
             <div class="flex items-center gap-4">
                 <!-- Simple Cart Placeholder for Store -->
                 <a href="#"
+                    wire:navigate
                     class="relative p-2 text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors"
                     aria-label="Shopping Cart">
                     <i data-lucide="shopping-cart" class="w-6 h-6"></i>
@@ -48,15 +48,15 @@
                 @if (Route::has('login'))
                     <div class="hidden sm:flex items-center gap-2">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="nav-link-outline">
+                            <a href="{{ url('/dashboard') }}" wire:navigate class="nav-link-outline">
                                 Dashboard
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="nav-link-flat">
+                            <a href="{{ route('login') }}" wire:navigate class="nav-link-flat">
                                 Log in
                             </a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="nav-link-outline">
+                                <a href="{{ route('register') }}" wire:navigate class="nav-link-outline">
                                     Register
                                 </a>
                             @endif
@@ -76,23 +76,22 @@
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-[#19140015] dark:border-[#3E3E3A] bg-white dark:bg-[#0a0a0a] py-4 px-4 space-y-3">
             <nav class="flex flex-col gap-3 text-sm font-medium text-[#706f6c] dark:text-[#A1A09A]">
-                <a href="{{ url('/') }}" class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Home</a>
-                <a href="#" class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
-                <a href="#" class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
-                <a href="#" class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Contact</a>
+                <a href="{{ url('/') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Home</a>
+                <a href="{{ route('products') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
+                <a href="{{ route('about') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
             </nav>
             @if (Route::has('login'))
                 <div class="pt-4 border-t border-[#19140015] dark:border-[#3E3E3A] flex flex-col gap-2">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="nav-link-outline w-full text-center">
+                        <a href="{{ url('/dashboard') }}" wire:navigate class="nav-link-outline w-full text-center">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="nav-link-flat w-full text-center">
+                        <a href="{{ route('login') }}" wire:navigate class="nav-link-flat w-full text-center">
                             Log in
                         </a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="nav-link-outline w-full text-center">
+                            <a href="{{ route('register') }}" wire:navigate class="nav-link-outline w-full text-center">
                                 Register
                             </a>
                         @endif
@@ -115,12 +114,14 @@
                 &copy; {{ date('Y') }} {{ config('app.name', 'Online Store') }}. All rights reserved.
             </div>
             <div class="flex gap-6">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <a href="#" class="hover:underline">Terms of Service</a>
-                <a href="#" class="hover:underline">Support</a>
+                <a href="#" wire:navigate class="hover:underline">Privacy Policy</a>
+                <a href="#" wire:navigate class="hover:underline">Terms of Service</a>
+                <a href="#" wire:navigate class="hover:underline">Support</a>
             </div>
         </div>
     </footer>
+
+    @livewireScripts
 </body>
 
 </html>

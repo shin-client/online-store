@@ -1,7 +1,8 @@
 import { createIcons, icons } from 'lucide';
 
-// Initialize Lucide icons
-createIcons({ icons });
+document.addEventListener('livewire:navigated', () => {
+    createIcons({ icons }); 
+});
 
 // Mobile menu toggle logic
 document.addEventListener('DOMContentLoaded', () => {
