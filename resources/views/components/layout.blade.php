@@ -27,19 +27,17 @@
 
                 <!-- Navigation Links -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#706f6c] dark:text-[#A1A09A]">
-                    <a href="{{ url('/') }}" wire:navigate
-                        class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Home</a>
                     <a href="{{ route('products') }}" wire:navigate
                         class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
-                    <a href="{{ route('about') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
+                    <a href="{{ route('about') }}" wire:navigate
+                        class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
                 </nav>
             </div>
 
             <!-- Right Side Actions (Auth / Cart) -->
             <div class="flex items-center gap-4">
                 <!-- Simple Cart Placeholder for Store -->
-                <a href="#"
-                    wire:navigate
+                <a href="#" wire:navigate
                     class="relative p-2 text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors"
                     aria-label="Shopping Cart">
                     <i data-lucide="shopping-cart" class="w-6 h-6"></i>
@@ -74,11 +72,13 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-[#19140015] dark:border-[#3E3E3A] bg-white dark:bg-[#0a0a0a] py-4 px-4 space-y-3">
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-[#19140015] dark:border-[#3E3E3A] bg-white dark:bg-[#0a0a0a] py-4 px-4 space-y-3">
             <nav class="flex flex-col gap-3 text-sm font-medium text-[#706f6c] dark:text-[#A1A09A]">
-                <a href="{{ url('/') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Home</a>
-                <a href="{{ route('products') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
-                <a href="{{ route('about') }}" wire:navigate class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
+                <a href="{{ route('products') }}" wire:navigate
+                    class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">Products</a>
+                <a href="{{ route('about') }}" wire:navigate
+                    class="hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition-colors">About</a>
             </nav>
             @if (Route::has('login'))
                 <div class="pt-4 border-t border-[#19140015] dark:border-[#3E3E3A] flex flex-col gap-2">
