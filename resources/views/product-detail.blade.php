@@ -14,24 +14,23 @@
             <!-- Image / Icon -->
             <div
                 class="w-full md:w-1/2 aspect-square bg-gradient-to-br from-[#fff5f5] to-[#fff2f2] dark:from-[#2d0a0c] dark:to-[#1D0002] rounded-lg flex items-center justify-center p-12">
-                <i data-lucide="{{ $product['icon'] ?? 'package' }}"
-                    class="w-24 h-24 text-[#f53003] dark:text-[#FF4433]"></i>
+                <i data-lucide="{{ $product->getIcon() }}" class="w-24 h-24 text-[#f53003] dark:text-[#FF4433]"></i>
             </div>
 
             <!-- Details -->
             <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4">
                 <div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-[#f53003] dark:text-[#FF4433]">
-                        {{ $product['category'] ?? 'General' }}
+                        {{ $product->getCategory() }}
                     </span>
                     <h1 class="text-2xl md:text-3xl font-bold text-[#1b1b18] dark:text-[#FDFDFC] mt-1">
-                        {{ $product['name'] }}
+                        {{ $product->getName() }}
                     </h1>
                     <p class="text-2xl font-semibold text-[#1b1b18] dark:text-[#FDFDFC] mt-2">
-                        ${{ number_format($product['price'], 2) }}
+                        ${{ number_format($product->getPrice(), 2) }}
                     </p>
                     <p class="text-[#706f6c] dark:text-[#A1A09A] mt-4 leading-relaxed">
-                        {{ $product['description'] }}
+                        {{ $product->getDescription() }}
                     </p>
                 </div>
 

@@ -96,27 +96,27 @@
                             <!-- Product Icon / Image Placeholder -->
                             <div
                                 class="aspect-video bg-gradient-to-br from-[#fff5f5] to-[#fff2f2] dark:from-[#2d0a0c] dark:to-[#1D0002] flex items-center justify-center p-8 relative overflow-hidden">
-                                <i data-lucide="{{ $product['icon'] }}"
+                                <i data-lucide="{{ $product->getIcon() }}"
                                     class="w-12 h-12 text-[#f53003] dark:text-[#FF4433] group-hover:scale-110 transition-transform duration-300"></i>
                                 <span
                                     class="absolute top-3 right-3 bg-white/80 dark:bg-black/80 backdrop-blur-xs text-xs font-semibold px-2.5 py-1 rounded text-[#1b1b18] dark:text-[#FDFDFC]">
-                                    {{ $product['category'] }}
+                                    {{ $product->getCategory() }}
                                 </span>
                             </div>
 
                             <!-- Product Info -->
                             <div class="p-5 flex-grow flex flex-col space-y-3">
                                 <div class="flex items-start justify-between gap-2">
-                                    <a href="{{ route('products.show', ['id' => $product['id']]) }}" wire:navigate
+                                    <a href="{{ route('products.show', ['id' => $product->getId()]) }}" wire:navigate
                                         class="font-medium text-base text-[#1b1b18] dark:text-[#FDFDFC] group-hover:text-[#f53003] dark:group-hover:text-[#FF4433] transition-colors">
-                                        {{ $product['name'] }}
+                                        {{ $product->getName() }}
                                     </a>
                                     <span class="font-semibold text-[#1b1b18] dark:text-[#FDFDFC] shrink-0">
-                                        ${{ number_format($product['price'], 2) }}
+                                        ${{ number_format($product->getPrice(), 2) }}
                                     </span>
                                 </div>
                                 <p class="text-sm text-[#706f6c] dark:text-[#A1A09A] leading-relaxed flex-grow">
-                                    {{ $product['description'] }}
+                                    {{ $product->getDescription() }}
                                 </p>
 
                                 <!-- Rating / Add to cart -->
