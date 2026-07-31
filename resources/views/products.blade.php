@@ -1,50 +1,3 @@
-@php
-    $products = [
-        [
-            'name' => 'Wireless Headphones',
-            'price' => 149.0,
-            'category' => 'Tech',
-            'icon' => 'headphones',
-            'description' => 'Premium sound quality with active noise cancelling and 40h battery life.',
-        ],
-        [
-            'name' => 'Minimalist Backpack',
-            'price' => 89.0,
-            'category' => 'Accessories',
-            'icon' => 'briefcase',
-            'description' => 'Waterproof canvas backpack with a dedicated 15-inch laptop compartment.',
-        ],
-        [
-            'name' => 'Mechanical Keyboard',
-            'price' => 129.0,
-            'category' => 'Tech',
-            'icon' => 'keyboard',
-            'description' => 'Tactile mechanical switches, RGB backlighting, and aluminum frame.',
-        ],
-        [
-            'name' => 'Smart Fitness Watch',
-            'price' => 199.0,
-            'category' => 'Tech',
-            'icon' => 'watch',
-            'description' => 'Heart rate monitoring, built-in GPS, and up to 7 days of battery life.',
-        ],
-        [
-            'name' => 'Canvas Sneakers',
-            'price' => 59.0,
-            'category' => 'Apparel',
-            'icon' => 'footprints',
-            'description' => 'Classic retro sneakers made of organic cotton canvas for everyday wear.',
-        ],
-        [
-            'name' => 'Insulated Water Bottle',
-            'price' => 29.0,
-            'category' => 'Accessories',
-            'icon' => 'cup-soda',
-            'description' => 'Double-walled stainless steel bottle that keeps drinks cold for 24 hours.',
-        ],
-    ];
-@endphp
-
 <x-layout>
     <div
         class="flex flex-col w-full max-w-5xl transition-opacity opacity-100 duration-750 starting:opacity-0 py-8 space-y-12">
@@ -129,7 +82,9 @@
             <div class="flex-grow w-full space-y-6">
                 <!-- Status/Results count -->
                 <div class="flex items-center justify-between text-sm text-[#706f6c] dark:text-[#A1A09A]">
-                    <span>Showing <span class="font-medium text-[#1b1b18] dark:text-[#FDFDFC]">6</span> products</span>
+                    <span>Showing <span
+                            class="font-medium text-[#1b1b18] dark:text-[#FDFDFC]">{{ count($products) }}</span>
+                        products</span>
                 </div>
 
                 <!-- Products Grid -->
@@ -152,10 +107,10 @@
                             <!-- Product Info -->
                             <div class="p-5 flex-grow flex flex-col space-y-3">
                                 <div class="flex items-start justify-between gap-2">
-                                    <h3
+                                    <a href="{{ route('products.show', ['id' => $product['id']]) }}" wire:navigate
                                         class="font-medium text-base text-[#1b1b18] dark:text-[#FDFDFC] group-hover:text-[#f53003] dark:group-hover:text-[#FF4433] transition-colors">
                                         {{ $product['name'] }}
-                                    </h3>
+                                    </a>
                                     <span class="font-semibold text-[#1b1b18] dark:text-[#FDFDFC] shrink-0">
                                         ${{ number_format($product['price'], 2) }}
                                     </span>
