@@ -31,6 +31,13 @@ Thumbs.db
 .omp
 AGENTS.md
 CLAUDE.md
+CONTEXT.md
+MISSION.md
+NOTES.md
+RESOURCES.md
+learning-records/
+lessons/
+reference/
 
 # Local docs symlink
 second-brain

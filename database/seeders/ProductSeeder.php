@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
@@ -17,42 +19,48 @@ class ProductSeeder extends Seeder
                 'name' => 'TV',
                 'description' => 'Best Smart TV 4K Ultra HD with HDR10+ and Dolby Atmos support.',
                 'image' => 'TV.jpg',
-                'category' => 'Electronics',
-                'price' => 2000,
-                'icon' => 'tv',
+                'category_name' => 'Electronics',
+                'price' => 2000.00,
+                'stock_quantity' => 15,
             ],
             [
                 'name' => 'iPhone',
                 'description' => 'Best iPhone with Super Retina XDR display and advanced camera system.',
                 'image' => 'iPhone.jpeg',
-                'category' => 'Tech',
-                'price' => 1500,
-                'icon' => 'smartphone',
+                'category_name' => 'Tech',
+                'price' => 1500.00,
+                'stock_quantity' => 25,
             ],
             [
                 'name' => 'Chromecast',
                 'description' => 'Best Chromecast for 4K streaming with Google TV remote.',
                 'image' => 'Chromecast.jpeg',
-                'category' => 'Electronics',
-                'price' => 300,
-                'icon' => 'cast',
+                'category_name' => 'Electronics',
+                'price' => 300.00,
+                'stock_quantity' => 50,
             ],
             [
                 'name' => 'Glasses',
                 'description' => 'Best Smart Glasses with built-in open-ear directional audio.',
                 'image' => 'Glasses.jpeg',
-                'category' => 'Accessories',
-                'price' => 500,
-                'icon' => 'glasses',
+                'category_name' => 'Accessories',
+                'price' => 500.00,
+                'stock_quantity' => 10,
             ],
         ];
 
         foreach ($products as $productData) {
-            // 1. Nếu ĐÃ CÓ sản phẩm tên "TV" trong CSDL ➔ Laravel sẽ Cập nhật (Update) thông tin của TV đó bằng dữ liệu trong mảng $productData.
-            // 2. Nếu CHƯA CÓ sản phẩm tên "TV" ➔ Laravel sẽ Tạo mới (Create) bản ghi TV với đầy đủ các trường name, description, image, price.
+            $categoryName = $productData['category_name'];
+            unset($productData['category_name']);
+
+            $category = Category::where('name', $categoryName)->firstOrFail();
+
             Product::updateOrCreate(
-                ['name' => $productData['name']], // dieu kien tim kiem vd: TV
-                $productData // seed data
+                ['name' => $productData['name']],
+                array_merge($productData, [
+                    'category_id' => $category->id,
+                    'slug' => Str::slug($productData['name']),
+                ])
             );
         }
     }

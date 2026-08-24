@@ -18,4 +18,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_database_seeder_runs_successfully(): void
+    {
+        $this->seed();
+
+        $this->assertDatabaseHas('categories', ['name' => 'Electronics']);
+        $this->assertDatabaseHas('products', ['name' => 'TV']);
+    }
 }
