@@ -9,21 +9,21 @@ class HomeController extends Controller
     public function index(): View
     {
         return view('welcome', [
-            'title' => 'Online Store - Trang chủ',
+            'title' => 'Online Store - Home',
         ]);
     }
 
     public function products(): View
     {
         return view('products', [
-            'title' => 'Danh sách sản phẩm - Online Store',
+            'title' => 'Products - Online Store',
         ]);
     }
 
     public function about(): View
     {
         return view('about', [
-            'title' => 'Giới thiệu - Online Store',
+            'title' => 'About Us - Online Store',
         ]);
     }
 }

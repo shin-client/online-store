@@ -2,9 +2,9 @@
     <div class="flex flex-col w-full max-w-4xl py-8 space-y-6">
         <!-- Back Button -->
         <div>
-            <a href="{{ route('products') }}" wire:navigate
+            <a href="{{ route('products.index') }}" wire:navigate
                 class="inline-flex items-center gap-1 text-sm text-[#706f6c] hover:text-[#1b1b18] dark:text-[#A1A09A] dark:hover:text-[#FDFDFC] transition-colors">
-                &larr; Quay lại danh sách sản phẩm
+                &larr; Back to products
             </a>
         </div>
 

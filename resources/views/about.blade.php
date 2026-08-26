@@ -139,7 +139,7 @@
         <!-- 5. Call to Action -->
         <div class="text-center pt-4">
             <h3 class="text-lg font-medium mb-4 text-[#1b1b18] dark:text-[#FDFDFC]">Ready to start shopping?</h3>
-            <a href="{{ route('products') }}" wire:navigate
+            <a href="{{ route('products.index') }}" wire:navigate
                 class="inline-flex items-center justify-center rounded-md bg-[#f53003] dark:bg-[#FF4433] px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 transition-opacity">
                 Explore our products
                 <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>

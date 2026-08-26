@@ -3,14 +3,39 @@
         class="flex flex-col w-full max-w-5xl transition-opacity opacity-100 duration-750 starting:opacity-0 py-8 space-y-12">
 
         <!-- 1. Header Section -->
-        <div class="text-center w-full">
-            <h1 class="text-3xl md:text-4xl font-semibold mb-4 text-[#1b1b18] dark:text-[#FDFDFC]">
-                Our <span class="text-[#f53003] dark:text-[#FF4433]">Products</span>
-            </h1>
-            <p class="text-[#706f6c] dark:text-[#A1A09A] max-w-2xl mx-auto leading-relaxed">
-                Explore our curated selection of high-quality items designed to complement your modern lifestyle.
-            </p>
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-semibold mb-2 text-[#1b1b18] dark:text-[#FDFDFC]">
+                    Our <span class="text-[#f53003] dark:text-[#FF4433]">Products</span>
+                </h1>
+                <p class="text-[#706f6c] dark:text-[#A1A09A]">
+                    Explore our curated selection of high-quality items.
+                </p>
+            </div>
+
+            <!-- New product and trash buttons  -->
+            <div class="flex items-center gap-3">
+                <a href="{{ route('products.trash') }}" wire:navigate
+                    class="inline-flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-[#161615] border border-[#e3e3e0] dark:border-[#3E3E3A] text-[#1b1b18] dark:text-[#FDFDFC] text-sm font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-[#20201e] transition-colors">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-[#f53003] dark:text-[#FF4433]"></i>
+                    Trash
+                </a>
+
+                <a href="{{ route('products.create') }}" wire:navigate
+                    class="inline-flex items-center gap-2 px-4 py-2.5 bg-[#f53003] hover:bg-[#d92900] dark:bg-[#FF4433] dark:hover:bg-[#e03020] text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    New Product
+                </a>
+            </div>
         </div>
+
+        <!-- Flash Message -->
+        @if (session('success'))
+            <div class="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg text-emerald-800 dark:text-emerald-200 text-sm flex items-center gap-2">
+                <i data-lucide="check-circle" class="w-5 h-5 shrink-0"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
 
         <!-- 2. Main Grid Container (Sidebar + Products Grid) -->
         <div class="flex flex-col md:flex-row gap-8 items-start w-full">
@@ -107,7 +132,7 @@
                             <!-- Product Info -->
                             <div class="p-5 flex-grow flex flex-col space-y-3">
                                 <div class="flex items-start justify-between gap-2">
-                                    <a href="{{ route('products.show', ['id' => $product->id]) }}" wire:navigate
+                                    <a href="{{ route('products.show', $product->id) }}" wire:navigate
                                         class="font-medium text-base text-[#1b1b18] dark:text-[#FDFDFC] group-hover:text-[#f53003] dark:group-hover:text-[#FF4433] transition-colors">
                                         {{ $product->name }}
                                     </a>
@@ -135,11 +160,36 @@
                                         Add to Cart
                                     </button>
                                 </div>
+
+                                <!-- Edit & Soft Delete Actions -->
+                                <div class="flex items-center gap-2">
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('products.edit', $product->id) }}" wire:navigate
+                                        class="p-1.5 text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#FDFDFC] transition-colors" title="Edit">
+                                        <i data-lucide="pencil" class="w-4 h-4"></i>
+                                    </a>
+
+                                    <!-- Trash Button (Soft Delete) -->
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to move this product to trash?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-1.5 text-[#706f6c] dark:text-[#A1A09A] hover:text-red-500 transition-colors cursor-pointer" title="Move to trash">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
+
+                <!-- Pagination -->
+                @if ($products->hasPages())
+                    <div class="pt-6 border-t border-[#e3e3e0] dark:border-[#3E3E3A]">
+                        {{ $products->links() }}
+                    </div>
+                @endif
 
         </div>
 

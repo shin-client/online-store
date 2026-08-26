@@ -36,7 +36,7 @@
                 </ul>
                 <ul class="flex gap-3 text-sm leading-normal">
                     <li>
-                        <a href="{{ route('products') }}" wire:navigate class="btn-primary">
+                        <a href="{{ route('products.index') }}" wire:navigate class="btn-primary">
                             Shop Now
                         </a>
                     </li>
