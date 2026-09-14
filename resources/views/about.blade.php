@@ -1,6 +1,5 @@
 <x-layout>
-    <div
-        class="flex flex-col items-center w-full max-w-5xl transition-opacity opacity-100 duration-750 starting:opacity-0 py-8 space-y-16">
+    <div class="flex flex-col w-full transition-opacity opacity-100 duration-750 starting:opacity-0 space-y-16">
 
         <!-- 1. Header Section -->
         <div class="text-center w-full">

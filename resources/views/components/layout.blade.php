@@ -44,11 +44,23 @@
                 </a>
 
                 @if (Route::has('login'))
-                    <div class="hidden sm:flex items-center gap-2">
+                    <div class="hidden sm:flex items-center gap-3">
                         @auth
-                            <a href="{{ url('/dashboard') }}" wire:navigate class="nav-link-outline">
+                            <span class="text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
+                                Hi, {{ auth()->user()->name }}
+                            </span>
+                            <a href="{{ route('dashboard') }}" wire:navigate class="nav-link-flat">
                                 Dashboard
                             </a>
+                            <a href="{{ route('profile.edit') }}" wire:navigate class="nav-link-flat">
+                                Profile
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <button type="submit" class="nav-link-outline cursor-pointer">
+                                    Log out
+                                </button>
+                            </form>
                         @else
                             <a href="{{ route('login') }}" wire:navigate class="nav-link-flat">
                                 Log in
@@ -83,9 +95,21 @@
             @if (Route::has('login'))
                 <div class="pt-4 border-t border-[#19140015] dark:border-[#3E3E3A] flex flex-col gap-2">
                     @auth
-                        <a href="{{ url('/dashboard') }}" wire:navigate class="nav-link-outline w-full text-center">
+                        <div class="px-2 py-1 text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC] text-center">
+                            Hi, {{ auth()->user()->name }}
+                        </div>
+                        <a href="{{ route('dashboard') }}" wire:navigate class="nav-link-flat w-full text-center">
                             Dashboard
                         </a>
+                        <a href="{{ route('profile.edit') }}" wire:navigate class="nav-link-flat w-full text-center">
+                            Profile
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="nav-link-outline w-full text-center cursor-pointer">
+                                Log out
+                            </button>
+                        </form>
                     @else
                         <a href="{{ route('login') }}" wire:navigate class="nav-link-flat w-full text-center">
                             Log in
@@ -102,10 +126,9 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center justify-center p-6 lg:p-8">
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {{ $slot }}
     </main>
-
     <!-- Footer -->
     <footer class="w-full border-t border-[#19140015] dark:border-[#3E3E3A] bg-white dark:bg-[#0a0a0a] py-8 mt-auto">
         <div

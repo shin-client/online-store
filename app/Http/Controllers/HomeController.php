@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function products(): View
     {
-        return view('products', [
+        return view('products.index', [
             'title' => 'Products - Online Store',
         ]);
     }

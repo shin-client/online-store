@@ -1,6 +1,9 @@
 services:
   mysql:
     image: mysql:9
+    command:
+      - --performance-schema=OFF
+      - --innodb-buffer-pool-size=64M
     container_name: online_store_mysql
     restart: unless-stopped
     tty: true

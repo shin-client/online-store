@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex flex-col w-full max-w-4xl py-8 space-y-6">
+    <div class="flex flex-col w-full space-y-6">
         <!-- Back Button -->
         <div>
             <a href="{{ route('products.index') }}" wire:navigate
@@ -13,16 +13,21 @@
             class="bg-white dark:bg-[#161615] rounded-xl border border-[#e3e3e0] dark:border-[#3E3E3A] p-6 md:p-8 flex flex-col md:flex-row gap-8 shadow-sm">
             <!-- Image / Icon -->
             <div
-                class="w-full md:w-1/2 aspect-square bg-gradient-to-br from-[#fff5f5] to-[#fff2f2] dark:from-[#2d0a0c] dark:to-[#1D0002] rounded-lg flex items-center justify-center p-12">
+                class="w-full md:w-5/12 aspect-square max-h-[480px] bg-gradient-to-br from-[#fff5f5] to-[#fff2f2] dark:from-[#2d0a0c] dark:to-[#1D0002] rounded-lg flex items-center justify-center p-12">
                 <i data-lucide="{{ $product->category?->icon ?? 'package' }}" class="w-24 h-24 text-[#f53003] dark:text-[#FF4433]"></i>
             </div>
 
             <!-- Details -->
-            <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4">
+            <div class="w-full md:w-7/12 flex flex-col justify-between space-y-6">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-[#f53003] dark:text-[#FF4433]">
-                        {{ $product->category?->name ?? 'General' }}
-                    </span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[#f53003] dark:text-[#FF4433]">
+                            {{ $product->category?->name ?? 'General' }}
+                        </span>
+                        <span class="text-xs text-[#706f6c] dark:text-[#A1A09A]">
+                            • Created by: <strong class="font-medium text-[#1b1b18] dark:text-[#FDFDFC]">{{ $product->user?->name ?? 'System' }}</strong>
+                        </span>
+                    </div>
                     <h1 class="text-2xl md:text-3xl font-bold text-[#1b1b18] dark:text-[#FDFDFC] mt-1">
                         {{ $product->name }}
                     </h1>

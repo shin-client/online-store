@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -28,4 +29,14 @@
 
 @utility btn-primary {
     @apply inline-block px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal hover:bg-black hover:border-black dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white transition-all;
+}
+
+input:focus, select:focus, textarea:focus {
+    --tw-ring-color: #f53003 !important;
+    border-color: #f53003 !important;
+}
+
+.dark input:focus, .dark select:focus, .dark textarea:focus {
+    --tw-ring-color: #FF4433 !important;
+    border-color: #FF4433 !important;
 }

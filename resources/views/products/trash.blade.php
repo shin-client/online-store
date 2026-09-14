@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex flex-col w-full max-w-5xl py-8 space-y-6 transition-opacity opacity-100 duration-750 starting:opacity-0">
+    <div class="flex flex-col w-full space-y-6 transition-opacity opacity-100 duration-750 starting:opacity-0">
         
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

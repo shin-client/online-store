@@ -1,30 +1,30 @@
+import Alpine from 'alpinejs';
 import { createIcons, icons } from 'lucide';
 
-document.addEventListener('livewire:navigated', () => {
-    createIcons({ icons }); 
-});
+window.Alpine = Alpine;
+Alpine.start();
 
-// Mobile menu toggle logic
+const initIcons = () => {
+    createIcons({ icons });
+};
+
+document.addEventListener('DOMContentLoaded', initIcons);
+document.addEventListener('livewire:navigated', initIcons);
+
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    
+
     if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            
-            // Toggle visibility
+
             mobileMenu.classList.toggle('hidden');
             mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
-            
-            // Toggle icon
+
             const icon = mobileMenuBtn.querySelector('[data-lucide]');
             if (icon) {
-                if (isExpanded) {
-                    icon.setAttribute('data-lucide', 'menu');
-                } else {
-                    icon.setAttribute('data-lucide', 'x');
-                }
+                icon.setAttribute('data-lucide', isExpanded ? 'menu' : 'x');
                 createIcons({ icons });
             }
         });

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -49,6 +50,8 @@ class ProductSeeder extends Seeder
             ],
         ];
 
+        $defaultUser = User::first();
+
         foreach ($products as $productData) {
             $categoryName = $productData['category_name'];
             unset($productData['category_name']);
@@ -59,6 +62,7 @@ class ProductSeeder extends Seeder
                 ['name' => $productData['name']],
                 array_merge($productData, [
                     'category_id' => $category->id,
+                    'user_id' => $defaultUser?->id,
                     'slug' => Str::slug($productData['name']),
                 ])
             );
